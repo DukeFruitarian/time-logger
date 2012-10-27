@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'sqlite3'
+#gem 'debugger'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -18,7 +19,8 @@ group :test, :development do
   gem 'database_cleaner', '~> 0.9.1'
   gem 'spork-rails', '~> 3.2.0'
   gem 'guard-spork', '~> 1.2.1'
-  gem 'guard-rspec', '~> 2.1.0' 
+  gem 'guard-rspec', '~> 2.1.0'
+  gem 'guard', '~> 1.5.0'
 end
 
-#gem 'debugger', '1.2.0'
+
