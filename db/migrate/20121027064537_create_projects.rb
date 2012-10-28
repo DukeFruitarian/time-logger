@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.integer :user_id
-      t.boolean :working, :default => false
+      t.datetime :begining, :default => nil
 
       t.timestamps
     end

@@ -11,15 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121027064537) do
+ActiveRecord::Schema.define(:version => 20121028164440) do
+
+  create_table "intervals", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end",        :default => '2012-10-28 16:45:40'
+    t.integer  "project_id"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.boolean  "working",     :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "begining"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

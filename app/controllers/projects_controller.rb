@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     if finished
       if finished == current
        @id = (current.id if current.working)
-      elsif current.working
+      elsif current.begining
         finished.change_status
         @id = current.id
       else
