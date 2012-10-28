@@ -1,14 +1,1 @@
-<%= form_tag({:controller => :sign, :action => :login}) do %>
-  <div class="field">
-    <%= label_tag(:name)%><br />
-    <%= text_field_tag(:name)%>
-  </div>
-  <div class="field">
-    <%= label_tag(:password)%><br />
-    <%= password_field_tag(:password)%>
-  </div>
-  <div class="actions">
-    <%= submit_tag("Log in") %>
-  </div>
-<% end %>
-  
+<%= render :partial => "shared/login_form" %>

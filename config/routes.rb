@@ -2,6 +2,7 @@ TimeLogger::Application.routes.draw do
 
   match "login", :to => "sign#show", :as => :login
   match "login/sign", :to => "sign#login"
+  match "logout", :to => "sign#logout"
 
   resources :projects do
     post :change_status, :on => :member

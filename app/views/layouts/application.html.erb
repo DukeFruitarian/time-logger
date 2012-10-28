@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TimeLogger</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	<title>Time logger</title>
+  	<%= stylesheet_link_tag    "time_logger", :media => "all" %>
+  	<%= stylesheet_link_tag    "scaffolds" %>
+  	<%= javascript_include_tag "application" %>
+  	<%= csrf_meta_tags %>
+	</head>
+	<body id="store">
+		<div id="banner">
+			<div id="logo">
+				<%= Time.now.strftime("%y.%m.%d %H:%M:%S")%>
+			</div>
+			<%= image_tag("rails.png") %>
+			<%= link_to "Time logger", projects_url %>
+	    <% unless session[:user_id]%>
+ 			  <div class = "login">
+          <%= render :partial => "shared/login_form" %>
+        </div>
+	    <% else %>
+		    <%= form_tag logout_path, :class => 'login' do%>
+		      Привет, <%= User.find(session[:user_id]).name%>
+	        <%= submit_tag 'выйти' %>
+		    <% end %>
+		  <% end %>
+		</div>
+		<div id="columns">
+			<div id="side">
 
-<%= yield %>
-
-</body>
+			</div>
+			<div id="main">
+				<%= yield %>
+ 			</div>
+ 		</div>
+	</body>
 </html>
