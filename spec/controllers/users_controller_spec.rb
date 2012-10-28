@@ -13,7 +13,7 @@ describe UsersController do
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {:user_id => 1}
   end
 
   describe "integrated" do
@@ -27,7 +27,7 @@ describe UsersController do
       }.should change(User, :count).by(1)
     end
   end
-  
+
   describe "GET new" do
     it "assigns a new user as @user" do
       get :new, {}, valid_session

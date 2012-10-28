@@ -6,7 +6,7 @@ describe SignController do
   end
 
   describe "GET 'show'" do
-    xit "returns http success" do
+    it "returns http success" do
       get 'show'
       response.should be_success
     end
@@ -18,9 +18,9 @@ describe SignController do
         user = double('user')
         user.stub(:id).and_return(3)
         User.should_receive(:authenticate).with("testUser", "123abc").and_return(user)
-        post :login, {:user => "testUser", :password => "123abc"}
-        session[:user_id].should eq(3)   
-        response.should redirect_to(projects_path)             
+        post :login, {:name => "testUser", :password => "123abc"}
+        session[:user_id].should eq(3)
+        response.should redirect_to(projects_path)
       end
     end
   end

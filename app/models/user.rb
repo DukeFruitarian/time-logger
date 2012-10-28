@@ -1,7 +1,7 @@
 require 'digest/sha2'
 class User < ActiveRecord::Base
   attr_accessible :name, :password, :password_confirmation
-  has_many :products
+  has_many :projects, :dependent => :destroy
   before_save do |model|
     model.name=model.name.downcase
   end
