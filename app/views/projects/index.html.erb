@@ -2,16 +2,22 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Title:</th>
+    <th>Action:</th>
+    <th>Total spent:</th>
+    <th>Show:</th>
+
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
     <td><%= project.title %></td>
     <td><%= raw(change_button(project))%></td>
+    <td><div id = "project<%= project.id %>">
+      <%= show_spent(*project.total_spent) %>
+    </div> </td>
     <td><%= link_to 'Details', project %></td>
+
   </tr>
 <% end %>
 </table>

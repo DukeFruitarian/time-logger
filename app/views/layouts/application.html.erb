@@ -27,7 +27,16 @@
 		</div>
 		<div id="columns">
 			<div id="side">
-
+        <% if session[:user_id] %>
+          <div id = "discription">
+            <% if session[:project_id] %>
+              Now you are working on project named
+              "<%=Project.find(session[:project_id]).title%>"
+            <% else %>
+              Now you are not working on any project
+            <% end %>
+          </div>
+        <% end %>
 			</div>
 			<div id="main">
 				<%= yield %>

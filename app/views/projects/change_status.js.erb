@@ -1,5 +1,11 @@
 
 $('input[type="submit"][value="turn off"]').attr("value","turn on");
+<% if @total_spent && id = @total_spent.pop %>
+  $('#project<%= id %>').html("<%= show_spent(*@total_spent)%>")
+  $('#discription').html("Now you are not working on any project")
+<% end %>
+
 <% if @id %>
-$('form[action="/projects/<%= @id %>/change_status"]').find('input').attr("value","turn off")
+  $('form[action="/projects/<%= @id %>/change_status"]').find('input').attr("value","turn off")
+  $('#discription').html('Now you are working on project named "<%= link_to Project.find(@id).title, project_path(Project.find(@id))%>"')
 <% end %>

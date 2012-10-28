@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
 
 <p>
   <b>Title:</b>
@@ -9,17 +11,17 @@
   <b>Description:</b>
   <%= @project.description %>
 </p>
-
+<% if @project.begining %>
+  <p>
+    Now you are working on this project. Started at: <%= @project.begining.getlocal.strftime("%y.%m.%d %H:%M:%S") %>
+  </p>
+<% end %>
 <p>
-  <b>User:</b>
-  <%= @project.user_id %>
+  <b> Working intervals:</b> <br />
+  <% @project.intervals.reverse.each do |interval| %>
+    <%= show_interval(interval) %> <br />
+  <% end %>
 </p>
-
-<p>
-  <b>Working:</b>
-  <%= @project.working %>
-</p>
-
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

@@ -17,7 +17,14 @@ class ProjectsController < ApplicationController
 
     if finished
       if finished == current
-       @id = (current.id if current.begining)
+        if current.begining
+          @id = current.id
+        else
+          @id = nil
+          @total_spent=current.total_spent
+          @total_spent << current.id
+          #debugger
+        end
       elsif current.begining
         finished.change_status
         @id = current.id
