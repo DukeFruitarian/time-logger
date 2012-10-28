@@ -7,7 +7,7 @@ describe User do
  # it {should have_many(:projects).dependent(:destroy)}
   describe "#create" do
     it "should create new user" do
-      
+
     end
   end
 end

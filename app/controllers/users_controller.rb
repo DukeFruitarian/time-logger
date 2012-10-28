@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  skip_before_filter :authorize, :only =>["create", "new"]
   def index
     @users = User.all
 
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to projects_path, notice: 'Now you can add your projects' }
         format.json { render json: @user, status: :created, location: @user }
       else

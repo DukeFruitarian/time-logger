@@ -1,4 +1,5 @@
 class SignController < ApplicationController
+  skip_before_filter :authorize
   def show
   end
 
