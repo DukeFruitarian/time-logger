@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(:version => 20121028164440) do
 
   create_table "intervals", :force => true do |t|
     t.datetime "start"
-    t.datetime "end",        :default => '2012-10-28 16:45:40'
+    t.datetime "end"
     t.integer  "project_id"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "projects", :force => true do |t|

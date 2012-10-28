@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
 
     if finished
       if finished == current
-       @id = (current.id if current.working)
+       @id = (current.id if current.begining)
       elsif current.begining
         finished.change_status
         @id = current.id
@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
         @id = nil
       end
     else
-      @id = (current.id if current.working)
+      @id = (current.id if current.begining)
     end
     session[:project_id] = @id
 
