@@ -1,9 +1,11 @@
 TimeLogger::Application.routes.draw do
-  
+
   match "login", :to => "sign#show", :as => :login
   match "login/sign", :to => "sign#login"
-  
-  resources :projects
+
+  resources :projects do
+    post :change_status, :on => :member
+  end
   resources :users, :only => [:new, :create, :edit, :update]
 
   # The priority is based upon order of creation:

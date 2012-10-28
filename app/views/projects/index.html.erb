@@ -2,18 +2,16 @@
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Working</th>
+    <th></th>
+    <th></th>
     <th></th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
     <td><%= project.title %></td>
-    <td><%= project.description %></td>
-    <td><%= status_to_word(project.working) %></td>
-    <td><%= link_to 'Detail', project %></td>
+    <td><%= raw(change_button(project))%></td>
+    <td><%= link_to 'Details', project %></td>
   </tr>
 <% end %>
 </table>
