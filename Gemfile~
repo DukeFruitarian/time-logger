@@ -18,7 +18,7 @@ group :test, :development do
   gem 'database_cleaner', '~> 0.9.1'
   gem 'spork-rails', '~> 3.2.0'
   gem 'guard-spork', '~> 1.2.1'
-  gem 'guard-rspec', '~> 2.1.0'
+  gem 'guard-rspec', '~> 2.1.0' 
 end
 
-gem 'debugger', '1.2.0'
+#gem 'debugger', '1.2.0'
