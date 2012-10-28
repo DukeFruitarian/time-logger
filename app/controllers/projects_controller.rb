@@ -11,7 +11,27 @@ class ProjectsController < ApplicationController
   end
 
   def change_status
-    redirect_to projects_path
+    current = Project.find_by_id(params[:id])
+    current.change_status
+    finished = Project.find_by_id(session[:project_id])
+
+    if finished
+      if finished == current
+       @id = (current.id if current.working)
+      elsif current.working
+        finished.change_status
+        @id = current.id
+      else
+        @id = nil
+      end
+    else
+      @id = (current.id if current.working)
+    end
+    session[:project_id] = @id
+
+    respond_to do |format|
+      format.js
+    end
   end
   # GET /projects/1
   # GET /projects/1.json

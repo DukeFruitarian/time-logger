@@ -1,0 +1,5 @@
+
+$('input[type="submit"][value="turn off"]').attr("value","turn on");
+<% if @id %>
+$('form[action="/projects/<%= @id %>/change_status"]').find('input').attr("value","turn off")
+<% end %>
