@@ -209,9 +209,15 @@ border-top: 1px solid #595;
 }
 
 #side a {
-  color: #bfb;
+  color: #00b;
   font-size: small;
+  hover: #bfb
 }
+
+#side a:hover {
+  background-color: #bfb
+}
+
 /* END:mainlayout */
 #places{
   margin: 0;

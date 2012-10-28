@@ -31,7 +31,9 @@
           <div id = "discription">
             <% if session[:project_id] %>
               Now you are working on project named
-              "<%=Project.find(session[:project_id]).title%>"
+              <% project = Project.find(session[:project_id]) %>
+              "<%= link_to project.title, project_path(project) %>" <br />
+              Total spent time: <%= show_spent(*project.total_spent)%>
             <% else %>
               Now you are not working on any project
             <% end %>

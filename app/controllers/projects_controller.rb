@@ -18,23 +18,23 @@ class ProjectsController < ApplicationController
     if finished
       if finished == current
         if current.begining
-          @id = current.id
+          @project = current
         else
-          @id = nil
-          @total_spent=current.total_spent
+          @project = nil
+          @total_spent = current.total_spent
           @total_spent << current.id
           #debugger
         end
       elsif current.begining
         finished.change_status
-        @id = current.id
+        @project = current
       else
-        @id = nil
+        @project = nil
       end
     else
-      @id = (current.id if current.begining)
+      @project = (current if current.begining)
     end
-    session[:project_id] = @id
+    session[:project_id] = @project
 
     respond_to do |format|
       format.js
