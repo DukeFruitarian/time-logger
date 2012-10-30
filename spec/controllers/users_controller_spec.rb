@@ -13,7 +13,7 @@ describe UsersController do
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
   def valid_session
-    {:user_id => 1}
+    {:user_id => User.create!(valid_attributes).id}
   end
 
   describe "integrated" do
@@ -48,7 +48,7 @@ describe UsersController do
       it "creates a new User" do
         expect {
           post :create, {:user => valid_attributes}, valid_session
-        }.to change(User, :count).by(1)
+        }.to change(User, :count).by(2)
       end
 
       it "assigns a newly created user as @user" do
@@ -67,15 +67,15 @@ describe UsersController do
       it "assigns a newly created but unsaved user as @user" do
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)
-        post :create, {:user => {}}, valid_session
+        post :create, {:user => {}}
         assigns(:user).should be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)
-        post :create, {:user => {}}, valid_session
-        response.should render_template("new")
+        post :create, {:user => {}}
+        response.should render_template("users/new")
       end
     end
   end

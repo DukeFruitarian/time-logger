@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   attr_accessible :description, :title, :user_id, :begining
   belongs_to :user
   has_many :intervals, :dependent => :destroy
+  validates :title, :presence => true
 
   # метод добавляющий время начало работы или создание нового интервала
   #   при завершении работы

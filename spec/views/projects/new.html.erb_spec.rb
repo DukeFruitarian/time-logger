@@ -6,7 +6,8 @@ describe "projects/new" do
       :title => "MyString",
       :description => "MyText",
       :user_id => 1,
-      :working => false
+      :working => nil,
+      :intervals => []
     ).as_new_record)
   end
 
@@ -17,8 +18,6 @@ describe "projects/new" do
     assert_select "form", :action => projects_path, :method => "post" do
       assert_select "input#project_title", :name => "project[title]"
       assert_select "textarea#project_description", :name => "project[description]"
-      assert_select "input#project_user_id", :name => "project[user_id]"
-      assert_select "input#project_working", :name => "project[working]"
     end
   end
 end

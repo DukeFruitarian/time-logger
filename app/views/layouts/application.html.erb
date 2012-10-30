@@ -20,8 +20,10 @@
         </div>
 	    <% else %>
 		    <%= form_tag logout_path, :class => 'login' do%>
-		      Привет, <%= User.find(session[:user_id]).name%>
-	        <%= submit_tag 'выйти' %>
+          <% user = User.find(session[:user_id]) %>
+		      Hello, <%= user.name%>
+	        <%= submit_tag 'logout' %> <br />
+          <%= link_to "edit profile",edit_user_path(user) %>
 		    <% end %>
 		  <% end %>
 		</div>

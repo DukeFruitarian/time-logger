@@ -9,14 +9,12 @@ describe "users/edit" do
     ))
   end
 
-  xit "renders the edit user form" do
+  it "renders the edit user form" do
     render
-
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form", :action => users_path(@user), :method => "post" do
-      assert_select "input#user_name", :name => "user[name]"
-      assert_select "input#user_hashed_pass", :name => "user[hashed_pass]"
-      assert_select "input#user_salt", :name => "user[salt]"
-    end
+    rendered.should have_selector("form", :method => :post, :action => users_path(@user))
+    rendered.should have_selector("input", :type => "submit")
+    rendered.should have_selector("input#user_name", :name => "user[name]")
+    rendered.should have_selector("input#user_password", :name => "user[password]")
+    rendered.should have_selector("input#user_password_confirmation", :name => "user[password_confirmation]")
   end
 end

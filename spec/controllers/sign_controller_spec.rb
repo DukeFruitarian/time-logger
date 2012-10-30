@@ -17,6 +17,7 @@ describe SignController do
       it "should assign session with user" do
         user = double('user')
         user.stub(:id).and_return(3)
+        user.stub(:projects).and_return([])
         User.should_receive(:authenticate).with("testUser", "123abc").and_return(user)
         post :login, {:name => "testUser", :password => "123abc"}
         session[:user_id].should eq(3)
@@ -26,9 +27,9 @@ describe SignController do
   end
 
   describe "GET 'logout'" do
-    xit "returns http success" do
+    it "returns http success" do
       get 'logout'
-      response.should be_success
+      response.should redirect_to(login_path)
     end
   end
 
