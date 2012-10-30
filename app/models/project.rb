@@ -1,8 +1,10 @@
 class Project < ActiveRecord::Base
   attr_accessible :description, :title, :user_id, :begining
   belongs_to :user
-  has_many :intervals
+  has_many :intervals, :dependent => :destroy
 
+  # метод добавляющий время начало работы или создание нового интервала
+  #   при завершении работы
   def change_status
     unless begining
       self.begining = Time.now
@@ -11,10 +13,9 @@ class Project < ActiveRecord::Base
       self.begining = nil
     end
     save
-    #debugger
-    #""
   end
 
+  # метод для вычисления общего количества времени работы над проектом
   def total_spent
     total = intervals.inject(0) do |total,interval|
       interval.end - interval.start + total

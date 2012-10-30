@@ -10,6 +10,10 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # обработка AJAX запроса при нажатии кнопки смены режима.
+  # Вычисляется текущий проект и проект,
+  # работу над которым нужно завершить. Проверяются условия
+  # начала\завершения. В куки записывается id текущего проекта
   def change_status
     current = Project.find_by_id(params[:id])
     current.change_status
@@ -23,7 +27,6 @@ class ProjectsController < ApplicationController
           @project = nil
           @total_spent = current.total_spent
           @total_spent << current.id
-          #debugger
         end
       elsif current.begining
         finished.change_status
@@ -34,7 +37,7 @@ class ProjectsController < ApplicationController
     else
       @project = (current if current.begining)
     end
-    session[:project_id] = @project
+    session[:project_id] = (@project.id if @project)
 
     respond_to do |format|
       format.js

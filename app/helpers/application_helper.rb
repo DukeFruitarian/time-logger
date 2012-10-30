@@ -1,4 +1,5 @@
 module ApplicationHelper
+  # хелпер для показа общего времени работы над проектом
   def show_spent(days,hours,minutes)
     res = ""
     res << pluralize(days,"day") + " " unless days == 0

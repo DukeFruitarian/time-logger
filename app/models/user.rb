@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   attr_reader :password
   validate :password_validator
 
+  # синглтон метод класса для проверки соответствия имени и пароля
   def User.authenticate(name, password)
     if user = find_by_name(name.strip.downcase)
       if user.hashed_pass == encrypt_password(password, user.salt)
@@ -20,21 +21,25 @@ class User < ActiveRecord::Base
     end
   end
 
+  # врайтер для переменной экземпляра password
   def password=(password)
     @password = password
     generate_salt
     self.hashed_pass = User.encrypt_password(password, salt)
   end
 
+  # шифрование пароля
   def User.encrypt_password(pass, salt)
     Digest::SHA2.hexdigest(pass + "smthg" + salt)
   end
 
+  #генерация "соли" для пароля
   def generate_salt
     self.salt = self.object_id.to_s + rand.to_s
   end
   private :generate_salt
 
+  # валидация пароля
   def password_validator
     errors.add(:password,
       "should contain at least 3 symbols") unless password.length >= 3

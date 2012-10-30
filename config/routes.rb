@@ -5,7 +5,7 @@ TimeLogger::Application.routes.draw do
   match "logout", :to => "sign#logout"
 
   resources :projects do
-    post :change_status, :on => :member
+    post :change_status, :on => :member, :as => :status
   end
   resources :users, :only => [:new, :create, :edit, :update]
 

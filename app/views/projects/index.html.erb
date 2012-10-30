@@ -1,5 +1,6 @@
-<h1>Listing projects</h1>
+<h1>Your projects:</h1>
 
+<% unless @projects.empty? %>
 <table>
   <tr>
     <th>Title:</th>
@@ -21,6 +22,7 @@
   </tr>
 <% end %>
 </table>
+<% end %>
 
 <br />
 
