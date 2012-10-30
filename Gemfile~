@@ -20,6 +20,7 @@ group :test, :development do
   gem 'guard-spork', '~> 1.2.1'
   gem 'guard-rspec', '~> 2.1.0'
   gem 'guard', '~> 1.5.0'
+  gem 'rb-inotify', '~> 0.8.8'
 end
 
 gem 'debugger', '1.2.0'
