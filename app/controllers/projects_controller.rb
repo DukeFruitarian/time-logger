@@ -107,6 +107,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     session[:project_id] = nil if session[:project_id]==@project.id
+
     @project.destroy
 
     respond_to do |format|
