@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'sqlite3', '1.3.6'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -9,9 +8,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  gem 'pg', '~>0.14.1'
+end
+
 gem 'jquery-rails'
 
 group :test, :development do
+  gem 'sqlite3', '1.3.6'
   gem 'rspec-rails', '~> 2.11.4'
   gem 'shoulda-matchers', '~> 1.4.1'
   gem 'capybara', '~> 1.1.2'
