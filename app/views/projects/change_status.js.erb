@@ -1,3 +1,6 @@
+<% if @wrong_user %>
+  alert('wrong request')
+<% else %>
 
 $('input[type="submit"][value="turn off"]').attr("value","turn on");
 <% if @total_spent && id = @total_spent.pop %>
@@ -8,4 +11,5 @@ $('input[type="submit"][value="turn off"]').attr("value","turn on");
 <% if @project %>
   $('form[action="/projects/<%= @project.id %>/change_status"]').find('input').attr("value","turn off")
   $('#discription').html('Now you are working on project named "<%= link_to @project.title, project_path(@project)%>"')
+<% end %>
 <% end %>

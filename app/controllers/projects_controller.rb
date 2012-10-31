@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   def change_status
     current = Project.find_by_id(params[:id])
     unless current.user.id == session[:user_id]
-      render_text("")
+      @wrong_user = true
       return
     end
     current.change_status
