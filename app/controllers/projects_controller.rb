@@ -16,6 +16,10 @@ class ProjectsController < ApplicationController
   # начала\завершения. В куки записывается id текущего проекта
   def change_status
     current = Project.find_by_id(params[:id])
+    unless current.user.id == session[:user_id]
+      render_text("")
+      return
+    end
     current.change_status
     finished = Project.find_by_id(session[:project_id])
 
