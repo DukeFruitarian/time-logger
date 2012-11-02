@@ -1,4 +1,10 @@
 class ProjectsController < ApplicationController
+  before_filter :only=> [:edit,:update,:destroy,:show] do
+    @project = Project.find(params[:id])
+    unless @project.user.id == session[:user_id]
+      redirect_to projects_path
+    end
+  end
   # GET /projects
   # GET /projects.json
   def index
@@ -50,12 +56,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = Project.find(params[:id])
-    unless @project.user.id == session[:user_id]
-      redirect_to projects_path
-      return
-    end
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -75,11 +75,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
-    unless @project.user.id == session[:user_id]
-      redirect_to projects_path
-      return
-    end
   end
 
   # POST /projects
@@ -101,10 +96,6 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    @project = Project.find(params[:id])
-    unless @project.user.id == session[:user_id]
-      redirect_to projects_path
-    end
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -119,12 +110,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @project = Project.find(params[:id])
     session[:project_id] = nil if session[:project_id]==@project.id
-    unless @project.user.id == session[:user_id]
-      redirect_to projects_path
-      return
-    end
     @project.destroy
 
     respond_to do |format|
