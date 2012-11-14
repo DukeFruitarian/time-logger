@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  # Проверка принадлежности проекта
   before_filter :only=> [:edit,:update,:destroy,:show] do
     @project = Project.find(params[:id])
     unless @project.user.id == session[:user_id]
@@ -16,6 +17,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # POST /projects/id/change_status
   # обработка AJAX запроса при нажатии кнопки смены режима.
   # Вычисляется текущий проект и проект,
   # работу над которым нужно завершить. Проверяются условия

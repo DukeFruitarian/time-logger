@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
   skip_before_filter :authorize, :only =>["create", "new"]
+
+  # Проверка принадлежности аккаунта к юзеру
   before_filter :only => [:edit,:update] do
     @user = User.find(params[:id])
     unless session[:user_id] == @user.id

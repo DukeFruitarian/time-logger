@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authorize
 
   protected
+  # Проверка авторизации
   def authorize
     redirect_to login_path,
       :alert => "Please login or sign up" unless User.find_by_id(session[:user_id])
